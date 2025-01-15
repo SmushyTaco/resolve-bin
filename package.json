@@ -1,40 +1,75 @@
 {
-  "name": "resolve-bin",
+  "name": "@smushytaco/resolve-bin",
   "version": "1.0.1",
   "description": "Resolves the full path to the bin file of a given package by inspecting the \"bin\" field in its package.json.",
-  "main": "index.js",
-  "scripts": {
-    "test": "tap test/{**/*,*}.test.js"
+  "license": "MIT",
+  "private": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/thlorenz/resolve-bin.git"
+    "url": "git+https://github.com/SmushyTaco/resolve-bin.git"
   },
-  "homepage": "https://github.com/thlorenz/resolve-bin",
-  "dependencies": {
-    "find-parent-dir": "~0.3.0"
+  "bugs": {
+    "url": "https://github.com/SmushyTaco/resolve-bin/issues"
   },
-  "devDependencies": {
-    "dependency-cruiser": "^10.0.1",
-    "mocha": "~1.14.0",
-    "open-cli": "^6.0.1",
-    "tap": "~0.4.3"
+  "author": {
+    "name": "SmushyTaco",
+    "email": "personal@nikanradan.com"
   },
+  "type": "module",
+  "engines": {
+    "node": ">=18.12.0",
+    "npm": ">=8.19.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "npx del-cli dist",
+    "build": "npm run clean && npx vite build",
+    "prepare": "npm run build"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "keywords": [
     "resolve",
     "bin",
     "module"
   ],
-  "author": {
-    "name": "Thorsten Lorenz",
-    "email": "thlorenz@gmx.de",
-    "url": "http://thlorenz.com"
+  "dependencies": {
+    "find-up": "^7.0.0",
+    "read-pkg": "^9.0.1"
   },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/thlorenz/resolve-bin/blob/master/LICENSE"
-  },
-  "engine": {
-    "node": ">= 12"
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "del-cli": "^6.0.0",
+    "@eslint/js": "^9.17.0",
+    "@smushytaco/versionchecker": "^1.0.4",
+    "@typescript-eslint/eslint-plugin": "^8.19.0",
+    "@typescript-eslint/parser": "^8.19.0",
+    "typescript-eslint": "^8.19.0",
+    "vite": "^6.0.7",
+    "vite-plugin-tsc-transpile": "^1.0.3",
+    "vite-plugin-dts": "^4.4.0",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2"
   }
 }
